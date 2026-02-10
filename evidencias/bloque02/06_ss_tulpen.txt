@@ -1,0 +1,2 @@
+tcp   LISTEN 0      4096                0.0.0.0:8069      0.0.0.0:*    ino:745486 sk:2002 cgroup:/system.slice/docker.service <->                   
+tcp   LISTEN 0      4096                   [::]:8069         [::]:*    ino:745487 sk:2003 cgroup:/system.slice/docker.service v6only:1 <->          

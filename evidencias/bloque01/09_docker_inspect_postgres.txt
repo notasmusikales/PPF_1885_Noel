@@ -1,0 +1,331 @@
+[
+    {
+        "Id": "cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f",
+        "Created": "2026-01-22T13:08:46.728178734Z",
+        "Path": "docker-entrypoint.sh",
+        "Args": [
+            "postgres"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 1896,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-01-28T13:38:51.850309589Z",
+            "FinishedAt": "2026-01-28T13:38:05.054074049Z",
+            "Health": {
+                "Status": "healthy",
+                "FailingStreak": 0,
+                "Log": [
+                    {
+                        "Start": "2026-02-10T12:48:05.297668963Z",
+                        "End": "2026-02-10T12:48:05.358192389Z",
+                        "ExitCode": 0,
+                        "Output": "/var/run/postgresql:5432 - accepting connections\n"
+                    },
+                    {
+                        "Start": "2026-02-10T12:48:15.359796188Z",
+                        "End": "2026-02-10T12:48:15.436654211Z",
+                        "ExitCode": 0,
+                        "Output": "/var/run/postgresql:5432 - accepting connections\n"
+                    },
+                    {
+                        "Start": "2026-02-10T12:48:25.440646392Z",
+                        "End": "2026-02-10T12:48:25.498124468Z",
+                        "ExitCode": 0,
+                        "Output": "/var/run/postgresql:5432 - accepting connections\n"
+                    },
+                    {
+                        "Start": "2026-02-10T12:48:35.507825336Z",
+                        "End": "2026-02-10T12:48:35.563354883Z",
+                        "ExitCode": 0,
+                        "Output": "/var/run/postgresql:5432 - accepting connections\n"
+                    },
+                    {
+                        "Start": "2026-02-10T12:48:45.564307185Z",
+                        "End": "2026-02-10T12:48:45.62415825Z",
+                        "ExitCode": 0,
+                        "Output": "/var/run/postgresql:5432 - accepting connections\n"
+                    }
+                ]
+            }
+        },
+        "Image": "sha256:23e88eb049fd5d54894d70100df61d38a49ed97909263f79d4ff4c30a5d5fca2",
+        "ResolvConfPath": "/var/lib/docker/containers/cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f/hostname",
+        "HostsPath": "/var/lib/docker/containers/cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f/hosts",
+        "LogPath": "/var/lib/docker/containers/cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f/cd81f8867418b59c7fd6600eb1dc836e1084820e536aec6e93c4b077b580d88f-json.log",
+        "Name": "/postgres-dev-2",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": [
+                "odoo18_db-dev-data:/var/lib/postgresql/data/pgdata:rw"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "odoo18_odoo-dev-network",
+            "PortBindings": {
+                "5432/tcp": [
+                    {
+                        "HostIp": "",
+                        "HostPort": "5432"
+                    }
+                ]
+            },
+            "RestartPolicy": {
+                "Name": "unless-stopped",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": [],
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": null,
+            "BlkioDeviceReadBps": null,
+            "BlkioDeviceWriteBps": null,
+            "BlkioDeviceReadIOps": null,
+            "BlkioDeviceWriteIOps": null,
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": null,
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": null,
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "volume",
+                "Name": "odoo18_db-dev-data",
+                "Source": "/var/lib/docker/volumes/odoo18_db-dev-data/_data",
+                "Destination": "/var/lib/postgresql/data/pgdata",
+                "Driver": "local",
+                "Mode": "rw",
+                "RW": true,
+                "Propagation": ""
+            },
+            {
+                "Type": "volume",
+                "Name": "c3732333e26ed2f14a897152d5162193929d96b2241ed8306143d6d6894e7d7f",
+                "Source": "/var/lib/docker/volumes/c3732333e26ed2f14a897152d5162193929d96b2241ed8306143d6d6894e7d7f/_data",
+                "Destination": "/var/lib/postgresql/data",
+                "Driver": "local",
+                "Mode": "",
+                "RW": true,
+                "Propagation": ""
+            }
+        ],
+        "Config": {
+            "Hostname": "cd81f8867418",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": {
+                "5432/tcp": {}
+            },
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "POSTGRES_DB_DEV=postgres",
+                "POSTGRES_USER_DEV=odoo",
+                "POSTGRES_PASSWORD_DEV=1234",
+                "ODOO_ADMIN_PASSWD_DEV=1234",
+                "POSTGRES_PASSWORD_QA=1234",
+                "ODOO_ADMIN_PASSWD_QA=1234",
+                "POSTGRES_PASSWORD_PROD=1234",
+                "ODOO_ADMIN_PASSWD_PROD=1234",
+                "POSTGRES_DB=postgres",
+                "POSTGRES_USER=odoo",
+                "POSTGRES_PASSWORD=1234",
+                "PGDATA=/var/lib/postgresql/data/pgdata",
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "GOSU_VERSION=1.19",
+                "LANG=en_US.utf8",
+                "PG_MAJOR=16",
+                "PG_VERSION=16.11",
+                "PG_SHA256=6deb08c23d03d77d8f8bd1c14049eeef64aef8968fd8891df2dfc0b42f178eac",
+                "DOCKER_PG_LLVM_DEPS=llvm19-dev \t\tclang19"
+            ],
+            "Cmd": [
+                "postgres"
+            ],
+            "Healthcheck": {
+                "Test": [
+                    "CMD-SHELL",
+                    "pg_isready -U odoo"
+                ],
+                "Interval": 10000000000,
+                "Timeout": 5000000000,
+                "Retries": 5
+            },
+            "Image": "postgres:16-alpine",
+            "Volumes": {
+                "/var/lib/postgresql/data": {},
+                "/var/lib/postgresql/data/pgdata": {}
+            },
+            "WorkingDir": "/",
+            "Entrypoint": [
+                "docker-entrypoint.sh"
+            ],
+            "Labels": {
+                "com.docker.compose.config-hash": "663249c69b55e1d3ee4fc163c8ad2b616307cd8c40c2d78e8b0ce92a544b0a41",
+                "com.docker.compose.container-number": "1",
+                "com.docker.compose.oneoff": "False",
+                "com.docker.compose.project": "odoo18",
+                "com.docker.compose.project.config_files": "docker-compose.yml",
+                "com.docker.compose.project.working_dir": "/home/user/odoo18",
+                "com.docker.compose.service": "db-dev",
+                "com.docker.compose.version": "1.29.2"
+            },
+            "StopSignal": "SIGINT"
+        },
+        "NetworkSettings": {
+            "SandboxID": "4ca09b5d085fb7ccc27a354450ffb23e697bbc4104fdee427d11994ae34ec509",
+            "SandboxKey": "/var/run/docker/netns/4ca09b5d085f",
+            "Ports": {
+                "5432/tcp": [
+                    {
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "5432"
+                    },
+                    {
+                        "HostIp": "::",
+                        "HostPort": "5432"
+                    }
+                ]
+            },
+            "Networks": {
+                "odoo18_odoo-dev-network": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": [
+                        "db-dev",
+                        "cd81f8867418"
+                    ],
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "fe6c4f4da9beed6c295f7fa222f89427e9def42841304ca615b269b84c17f58e",
+                    "EndpointID": "d1ec56a89ce4c5ea1997c6139fd312b23395021f901800fac59fc08664224ead",
+                    "Gateway": "172.18.0.1",
+                    "IPAddress": "172.18.0.3",
+                    "MacAddress": "32:88:f6:22:30:99",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": [
+                        "postgres-dev-2",
+                        "db-dev",
+                        "cd81f8867418"
+                    ]
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:6dfa5b099f5fa9290aa16eb857abee8176e4d150156916745fed867335fa93fa",
+            "size": 3054,
+            "annotations": {
+                "com.docker.official-images.bashbrew.arch": "amd64",
+                "org.opencontainers.image.base.digest": "sha256:1882fa4569e0c591ea092d3766c4893e19b8901a8e649de7067188aba3cc0679",
+                "org.opencontainers.image.base.name": "alpine:3.23",
+                "org.opencontainers.image.created": "2025-12-18T00:37:20Z",
+                "org.opencontainers.image.revision": "39623ba5d20db58a25c3010896baaf54b9aa6b6d",
+                "org.opencontainers.image.source": "https://github.com/docker-library/postgres.git#39623ba5d20db58a25c3010896baaf54b9aa6b6d:16/alpine3.23",
+                "org.opencontainers.image.url": "https://hub.docker.com/_/postgres",
+                "org.opencontainers.image.version": "16.11-alpine3.23"
+            },
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]
