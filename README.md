@@ -2,12 +2,12 @@
 **UF1885 – Administración, monitorización y análisis de incidencias**  
 
 **Entorno analizado:**  
-- Sistema operativo: Ubuntu 24.04.3 LTS (Noble Numbat)  
-- Kernel: Linux 6.8.0-94-generic  
-- Arquitectura: aarch64  
-- Despliegue: Docker  
-- ERP-CRM: Odoo 18 (`odoo-dev`)  
-- Gestor de datos: PostgreSQL (`postgres-dev`)  
+- Sistema operativo: Ubuntu 24.04.3 LTS  
+- Kernel: Linux 6.8.0-90-generic  
+- Arquitectura: x86-64  
+- Despliegue: Docker
+- ERP-CRM: Odoo 18 (`odoo-dev-UF1884`)  
+- Gestor de datos: PostgreSQL (`postgres-dev-2`)  
 
 Los resultados y conclusiones que se presentan a continuación se basan **exclusivamente en los datos reales obtenidos** de los directorios `bloque1` y `bloque2` proporcionados.
 
@@ -175,5 +175,6 @@ Se documentan:
 ## Conclusión final
 El análisis demuestra que la **infraestructura base es correcta y estable**.  
 La actuación del técnico ha sido **prudente, profesional y basada en evidencias**, cumpliendo los criterios exigidos en **UF1885** incluso en ausencia de una incidencia activa.
+
 
 
