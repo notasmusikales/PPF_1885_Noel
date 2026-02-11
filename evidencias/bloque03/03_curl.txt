@@ -1,0 +1,10 @@
+HTTP/1.1 200 OK
+Server: Werkzeug/3.0.1 Python/3.12.3
+Date: Wed, 11 Feb 2026 12:08:43 GMT
+Content-Type: text/html; charset=utf-8
+Set-Cookie: frontend_lang=es_ES; Expires=Thu, 11 Feb 2027 12:08:42 GMT; Path=/
+Set-Cookie: session_id=Nr_Md6Z35Z7SEBdHJN9DTBEay-v1GF2AHQLaInTU5-B5yBC14UqhssBFkcNmul-3oeqpemjfYr_OKxxaEh53; Expires=Thu, 11 Feb 2027 12:08:43 GMT; Max-Age=604800; HttpOnly; Path=/
+X-Content-Type-Options: nosniff
+Content-Length: 17452
+Connection: close
+
