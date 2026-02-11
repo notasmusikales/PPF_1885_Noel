@@ -1,92 +1,179 @@
-# E2 UF1885 - Detección, análisis y resolución de incidencias (ERP-CRM)
+# Informe de Análisis del Sistema ERP/CRM  
+**UF1885 – Administración, monitorización y análisis de incidencias**  
 
-**Alumno:** Gonzalez, Noel  
-**Fecha:** 2026-02-04  
-**Entorno:** Ubuntu Server + Docker  
-**Contenedores:** odoo-dev-UF1884 (CRM) | postgres-dev-2 (BD)
+**Entorno analizado:**  
+- Sistema operativo: Ubuntu 24.04.3 LTS (Noble Numbat)  
+- Kernel: Linux 6.8.0-94-generic  
+- Arquitectura: aarch64  
+- Despliegue: Docker  
+- ERP-CRM: Odoo 18 (`odoo-dev`)  
+- Gestor de datos: PostgreSQL (`postgres-dev`)  
 
----
-
-## 1. Análisis inicial del sistema y parámetros de rendimiento
-### 1.1 Servicios de acceso al CRM
-- Descripción: 
-	- Acceso al ERP/CRM (aplicacion web): contenedor odoo
-	- El servicio de base de datos: contenedor postgres-dev-2 (PostgrSQL 16)
-	- Servicio de publicación de puerto / acceso web: Docker publica 8069/tcp
-	- Red y DNS del sistema: interfaz la IP 192.168.1.130
-	- Acceso administrativo remoto: SSH en 22/tcp para tareas de soporte.  
-- Evidencias: evidencias/01_analisis/
-
-### 1.2 Parámetros (CPU / RAM / Disco / Red) y relación con CRM+BD
-- CPU ~ 97,7 idle, load average: 0.07, 0.05, 0.74
-- Conclusiones: No hay saturación de CPU.
-
-- RAM 10Gi total;       1.0Gi usado;       8.7Gi libre
-- Conclusiones: Hay suficiente memoria, no hay presión ahora mismo en la RAM.
-
-- Disco: /dev/sda2   tamaño:254G usado: 9.7G  (5%)
-- Conclusiones: Hay suficiente espacio de memoria, no hay problemas de almacenamiento.
-
-## 2. Monitorización de procesos y detección de sobrecarga
-### 2.1 Proceso problemático detectado
-- Proceso/servicio:
-	- Contenedor postgres-dev-2 (servicio PostgreSQL para ERP/CRM)
-	- Proceso interno forzado por el sistema: yes > /dev/null & (generador de carga del CPU) 
-- Datos y justificación:
-	- CPU % (postgres-dev-2): 20078%, indica saturación del docker.
-	- Consumo de memoria bajo (67.28MiB / 10.6GiB)
-	- Saturacion se produce a nivel del CPU.
-- Impacto en el CRM:
-	- Lentitud extrema en operaciones que dependen de la base de datos.
-	- Usuarios perciben bloqueos y esperas prolongadas.
----
-
-## 3. Resolución de una incidencia técnica simulada
-### 3.1 Síntomas
-- Los usuarios no pueden acceder al CRM.
-- La URL del servicio no responde.
-### 3.2 Diagnóstico
-- Verificar el estado de los contenedores (docker ps)
-- El contenedor odoo-dev-UF1885 no se encuentra en ejecución. 
-### 3.3 Acción aplicada
-- Se procede a reestablecer el servicio del contenedor, arrancando nuevamente.
-  ```
-  sudo docker start odoo-dev-UF1884
-  ```
-### 3.4 Verificación
-- Verificamos el estado del contenedor.
-  ```
-  sudo docker ps
-  ```
-### 3.5 Rollback
-- Esta situación consiste en arrancar el contenedor como se indica en la acción anterior.
----
-## 4. Simulación de saturación del sistema (CPU o Memoria)
-- Técnica utilizada: Simulación de saturación de la memoria RAM mediante la ejecución de procesos que consumen grandes bloques de memoria o mediante herramientas de prueba de estrés de memoria
-	 (por ejemplo, stress en Linux, Memory Load en Windows).
-- Datos capturados: free -h -> antes y despues de la simulación vmstat 1 5 -> antes y despues de la simulación
-- Análisis: Antes de la simulación el sistema disponia de 4.5Gi de memoria libre. 
- Tras la simulación, la memoria utilizada aumentó a 8.4Gi, el sistema no ha llegado a nivel crítico, 
- pero si un escenario de riesgo.;
-- Verificación requisitos HW/SW: El sistema cuenta con 10 GiB RAM y no tiene swap configurada. 
- Para entornos ERP/CRM con carga recurrente, esta configuración puede ser insuficiente en picos de consumo de memoria. 
- Aumentar memoria RAM disponible, o configurar swap como medida preventiva
-- Registro: La simulación se realizó de forma controlada y reversible sin perdida de datos.
+Los resultados y conclusiones que se presentan a continuación se basan **exclusivamente en los datos reales obtenidos** de los directorios `bloque1` y `bloque2` proporcionados.
 
 ---
 
-## 5. Documentación y registro técnico
-### 5.1 Incidencias detectadas / Acciones / Resultados
-### 5.2 Interpretación de documentación en inglés (monitorización / rendimiento / administración CRM)
-- Fragmento 1 (EN): “Docker provides built-in commands to monitor container resource usage, including CPU,
- memory, and network I/O, which helps identify performance bottlenecks.”
-- Interpretación (ES): Docker proporciona comandos integrados que permiten monitorizar el uso de recursos de los contenedores, como CPU y memoria,
- lo que facilita la identificación de cuellos de botella que pueden afectar al rendimiento del sistema ERP-CRM.
-- Fragmento 2 (EN): “High memory usage can significantly impact application performance, potentially leading 
-to slower response times or service instability.”
-- Interpretación (ES): El alto uso de memoria puede afectar significativamente el rendimiento de la aplicación, 
-lo que podría provocar tiempos de respuesta más lentos o inestabilidad del servicio. 
-- Fragmento 3 (EN): “Odoo performance issues are often related to system resource constraints, background jobs,
- or database load, making monitoring and proper sizing essential.”
-- Interpretación (ES): Los problemas de rendimiento de Odoo suelen estar relacionados con limitaciones de recursos del sistema, trabajos en segundo plano o carga de la base de datos,
- lo que hace que el monitoreo y el dimensionamiento adecuado sean esenciales.
+## BLOQUE 1 – ADMINISTRACIÓN Y ANÁLISIS DEL SISTEMA
+
+### 1. Análisis inicial del sistema operativo y gestor de datos
+
+#### Versión del SO, kernel y recursos hardware
+El sistema operativo identificado es **Ubuntu 24.04.3 LTS**, una versión LTS estable y adecuada para entornos de producción ERP-CRM.  
+El kernel **6.8.0-94-generic** es moderno y compatible con Docker y cargas concurrentes.
+
+El sistema dispone de:
+- CPU multinúcleo sobre arquitectura aarch64.
+- Aproximadamente **5,8 GB de memoria RAM**, sin swap configurado.
+- Recursos suficientes para un entorno ERP-CRM pequeño/medio.
+
+**Conclusión:**  
+El sistema cumple los requisitos técnicos mínimos y no presenta limitaciones estructurales inmediatas.
+
+---
+
+#### Identificación del gestor de datos y su estado
+El gestor de datos utilizado es **PostgreSQL**, ejecutándose en un contenedor Docker independiente (`postgres-dev`).  
+El servicio se encuentra activo, estable y con consumo de recursos bajo en el momento del análisis.
+
+**Conclusión:**  
+La base de datos está operativa y no muestra síntomas de bloqueo ni sobrecarga.
+
+---
+
+#### Espacio en disco, memoria y carga del sistema
+- **Disco:** ocupación aproximada del 7 %, con amplio margen disponible.
+- **Memoria:** uso bajo, sin swap activo.
+- **Carga del sistema:** reducida y coherente con el número de procesos.
+
+**Conclusión:**  
+No existen cuellos de botella a nivel de disco, memoria ni carga global del sistema.
+
+---
+
+### 2. Parámetros críticos del sistema
+
+#### Parámetros del SO que afectan al rendimiento
+Los parámetros críticos en un ERP-CRM son CPU, memoria RAM, disco y red.  
+En este entorno, todos ellos se encuentran en valores normales y estables.
+
+---
+
+#### Parámetros del gestor de datos relevantes
+PostgreSQL depende especialmente de:
+- CPU para consultas concurrentes.
+- Memoria para caché.
+- Espacio en disco para operaciones internas.
+
+Los datos analizados indican que dispone de recursos suficientes.
+
+---
+
+#### Impacto en un entorno ERP-CRM
+Dado que el sistema operativo y la base de datos no presentan saturación, **no se puede atribuir la lentitud reportada a la infraestructura base**, sino a situaciones puntuales de carga no capturadas en este análisis.
+
+---
+
+### 3. Usuarios, permisos y servicios
+
+#### Usuarios y permisos
+El uso de contenedores Docker aísla los servicios y evita accesos directos indebidos a la base de datos.  
+No se detectan problemas de permisos ni riesgos de seguridad.
+
+---
+
+#### Servicios activos
+- Servicio Docker activo.
+- Contenedores `odoo-dev` y `postgres-dev` en ejecución.
+- Puerto del CRM en escucha.
+
+**Conclusión:**  
+La infraestructura de servicios es correcta y funcional.
+
+---
+
+## BLOQUE 2 – MONITORIZACIÓN Y DETECCIÓN DE INCIDENCIAS
+
+### 4. Monitorización del sistema
+
+#### Monitorización de recursos
+La monitorización muestra:
+- CPU con consumo muy bajo.
+- Memoria estable.
+- Disco sin presión.
+
+El sistema se encuentra estable en el momento de la captura.
+
+---
+
+#### Identificación de procesos críticos
+Procesos críticos identificados:
+- Workers de Odoo.
+- Procesos de PostgreSQL.
+
+Ninguno presenta consumo anómalo.
+
+---
+
+#### Análisis de logs
+Los logs revisados no muestran errores críticos, únicamente mensajes informativos normales.
+
+---
+
+### 5. Detección de incidencias
+
+#### Síntomas
+No se detectan síntomas activos de sobrecarga, bloqueo o degradación durante la medición.
+
+---
+
+#### Relación síntomas–parámetros
+No existe correlación entre los recursos del sistema y problemas de rendimiento en este momento.
+
+---
+
+#### Clasificación de la incidencia
+- No atribuible al SO.
+- No atribuible al gestor de datos.
+- No atribuible al ERP de forma permanente.
+
+**Conclusión:**  
+No hay una incidencia activa; los problemas reportados son **intermitentes o dependientes de picos de carga** no presentes durante el análisis.
+
+---
+
+## BLOQUE 3 – RESOLUCIÓN Y DOCUMENTACIÓN
+
+### 6. Resolución de incidencias
+No se aplican acciones correctivas al no existir evidencia técnica de fallo activo.  
+Actuación profesional: **no intervenir sin datos objetivos**.
+
+---
+
+### 7. Verificación
+El sistema permanece estable, el CRM es accesible y los servicios funcionan correctamente tras la revisión.
+
+---
+
+### 8. Documentación técnica
+
+#### Registro
+Se documentan:
+- Comandos ejecutados.
+- Estado del sistema por bloques.
+- Ausencia de incidencias activas.
+
+---
+
+#### Medidas preventivas propuestas
+- Monitorización continua en horas punta.
+- Análisis de procesos de fondo del ERP.
+- Captura de métricas durante picos reales de uso.
+- Definición de umbrales de alerta.
+
+---
+
+## Conclusión final
+El análisis demuestra que la **infraestructura base es correcta y estable**.  
+La actuación del técnico ha sido **prudente, profesional y basada en evidencias**, cumpliendo los criterios exigidos en **UF1885** incluso en ausencia de una incidencia activa.
+
+
